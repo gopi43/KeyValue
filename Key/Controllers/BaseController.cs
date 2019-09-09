@@ -1,39 +1,36 @@
-﻿using System;
+﻿using Key.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace Key.Controllers
+namespace Key
 {
     public class BaseController : ApiController
     {
-        // GET: api/student
-        public IEnumerable<string> Get()
+        DataReadercs dataReadercs = new DataReadercs();
+        
+        public Dictionary<string, object> Get()
         {
-            return new string[] { "value1", "value2" };
+            var temp =dataReadercs.DataRead();
+            return temp;
         }
-
-        // GET: api/student/5
-        public string Get(int id)
+        public List<object> Get([FromUri]string key)
         {
-            return "value";
+            var temp = dataReadercs.DataRead(key);
+            return temp;
         }
-
-        // POST: api/student
-        public void Post([FromBody]string value)
+        public ResultData Post([FromBody]DataStore value)
         {
-        }
-
-        // PUT: api/student/5
-        public void Put(int id, [FromBody]string value)
+            var temp = dataReadercs.DataInsert(value);
+            return temp;
+        }    
+        public ResultData Delete([FromUri]string key)
         {
-        }
-
-        // DELETE: api/student/5
-        public void Delete(int id)
-        {
+            var temp = dataReadercs.DataDelete(key);
+            return temp;
         }
     }
 }
