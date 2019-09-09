@@ -9,6 +9,6 @@ namespace Key.Models
     public class DataStore
     {
         public string Key { get; set; }
-        public Json Value { get; set; }
+        public string Value { get; set; }
     }
 }
