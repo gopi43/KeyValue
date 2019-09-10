@@ -48,6 +48,7 @@ namespace Key
             }
             else
             {
+                KeyValue.Value.CreatedTime = DateTime.Now;
                 result.Add(KeyValue.Key, KeyValue.Value);
                 var convertedJson = JsonConvert.SerializeObject(result, Formatting.Indented);
                 File.WriteAllText(path, convertedJson);

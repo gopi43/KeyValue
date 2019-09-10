@@ -7,7 +7,8 @@ namespace Key.Models
 {
     public class ValueStore
     {
-        public string Name { get; set; }
-        public string Age { get; set; }
+       public object Tuple { get; set; }
+        public DateTime? CreatedTime { get; set; }
+        public long TimeToLive { get; set; }
     }
 }
