@@ -5,6 +5,7 @@ using System.IO;
 using System.Web;
 using Newtonsoft.Json;
 using Key.Models;
+using System.Dynamic;
 
 namespace Key
 {
@@ -14,6 +15,29 @@ namespace Key
         string json = File.ReadAllText(@"c:\temp\New.json");
         string path = @"c:\temp\New.json";
 
+        public DataReadercs()
+        {
+            var result = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+
+           
+            dynamic expando = new ExpandoObject();
+
+            expando.Key = string.Empty;
+            expando.Value = new ValueStore();
+
+            expando = result;
+
+            List<string> keys = new List<string>();
+            
+            foreach (var item in expando)
+            {
+                if((item.Value.CreatedTime-DateTime.Now)<item.Value.TimeToLive)
+                {
+                    keys.Add(item.Key);
+                }
+            }
+
+        }
 
 
 
