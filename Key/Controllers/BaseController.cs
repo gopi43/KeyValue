@@ -12,12 +12,12 @@ namespace Key
     {
         DataReadercs dataReadercs = new DataReadercs();
         
-        public Dictionary<string, object> Get()
+        public List<DataStore> Get()
         {
             var temp =dataReadercs.DataRead();
             return temp;
         }
-        public List<object> Get([FromUri]string key)
+        public ResultData Get([FromUri]string key)
         {
             var temp = dataReadercs.DataRead(key);
             return temp;

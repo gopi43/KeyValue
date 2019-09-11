@@ -110,8 +110,6 @@
     </Compile>
     <Compile Include="Models\DataStore.cs" />
     <Compile Include="Models\ResultData.cs" />
-    <Compile Include="Models\Tuple.cs" />
-    <Compile Include="Models\ValueStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
