@@ -99,17 +99,20 @@ namespace Key
         {
             string json = File.ReadAllText(@"c:\temp\New.json");
             ResultData resultData = new ResultData();
-            var result = JsonConvert.DeserializeObject<Dictionary<string, object>>(json);
+            var result = JsonConvert.DeserializeObject<List<DataStore>>(json);
 
-            var result1 = result.Where(o => o.Key.ToLower() == KeyValue).Select(o => o.Value).ToList();
-            if (result1.Count == 0)
+            var result1 = result.Where(o => o.Key.ToLower() == KeyValue).Select(o=>o).ToList();
+            if (result1.Count() == 0)
             {
                 resultData.Result = false;
                 resultData.Message = "Key doesnot exists";
             }
             else
             {
-                result.Remove(KeyValue);
+                foreach (var item in result1)
+                {
+                    result.Remove(item);
+                }
                 var convertedJson = JsonConvert.SerializeObject(result, Formatting.Indented);
                 File.WriteAllText(path, convertedJson);
                 resultData.Result = true;
